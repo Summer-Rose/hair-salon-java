@@ -19,4 +19,10 @@ public class StylistTest {
     assertEquals(Stylist.all().size(), 0);
   }
 
+  @Test
+  public void equals_returnsTrueIfStylistsAreTheSame() {
+    Stylist stylist1 = new Stylist("Obama");
+    Stylist stylist2 = new Stylist("Obama");
+    assertEquals(true, stylist1.equals(stylist2));
+  }
 }
