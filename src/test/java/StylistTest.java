@@ -25,4 +25,12 @@ public class StylistTest {
     Stylist stylist2 = new Stylist("Obama");
     assertEquals(true, stylist1.equals(stylist2));
   }
+
+  @Test
+  public void save_assignsIdToNewStylist() {
+    Stylist newStylist = new Stylist("Bart Simpson");
+    newStylist.save();
+    Stylist savedStylist = Stylist.find(newStylist.getStylistId());
+    assertTrue(newStylist.equals(savedStylist));
+  }
 }
