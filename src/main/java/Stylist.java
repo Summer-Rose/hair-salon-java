@@ -37,11 +37,21 @@ public class Stylist {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO stylists (stylist_name) VALUES (:stylist_name);";
+      String sql = "INSERT INTO stylists (stylist_name) VALUES (:stylist_name)";
       this.stylist_id = (int) con.createQuery(sql, true)
-        .addParameter("sytlist_name", this.stylist_name)
+        .addParameter("stylist_name", this.stylist_name)
         .executeUpdate()
         .getKey();
+    }
+  }
+
+  public static Stylist find(int stylist_id) {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM stylists WHERE stylist_id=:stylist_id;";
+      Stylist Stylist = con.createQuery(sql)
+        .addParameter("stylist_id", stylist_id)
+        .executeAndFetchFirst(Stylist.class);
+      return Stylist;
     }
   }
 }
