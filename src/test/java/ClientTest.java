@@ -38,4 +38,22 @@ public class ClientTest {
     Client client2 = new Client("Jerry Seinfeld", 1);
     assertTrue(client1.equals(client2));
   }
+
+  @Test
+  public void find_findsClientInDatabase_true() {
+    Client client = new Client("George Michael", 1);
+    client.save();
+    Client savedClient = Client.find(client.getId());
+    assertTrue(client.equals(savedClient));
+  }
+
+  @Test
+  public void save_savesStylistIdIntoClientTableInDB_true() {
+    Stylist stylist = new Stylist("Edward Scissor Hands");
+    stylist.save();
+    Client client = new Client("Jack Sparrow", stylist.getStylistId());
+    client.save();
+    Client savedClient = Client.find(client.getId());
+    assertEquals(savedClient.getStylistId(), stylist.getStylistId());
+  }
 }
