@@ -12,8 +12,8 @@
   <tbody>
     #foreach ($stylist in $stylists)
       <tr>
-        <td><a href="/">$stylist.getStylistName()</a></td>
-        <td><a href="/delete/$restaurant.getId()"><span class="glyphicon
+        <td><a href="/stylist/$stylist.getStylistId()">$stylist.getStylistName()</a></td>
+        <td><a href="/delete/$stylist.getId()"><span class="glyphicon
           glyphicon-trash" aria-hidden="true"></a></span></td>
       </tr>
     #end
