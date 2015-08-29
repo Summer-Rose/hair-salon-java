@@ -35,12 +35,11 @@ public class App {
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
 
-      get("/stylist/:id", (request, response) -> {
+      get("/delete/:id", (request, response) -> {
         HashMap<String, Object> model = new HashMap<String, Object>();
-        //Integer stylist_id = Integer.parseInt(request.params(:id));
-
-        //model.put("clients", Stylist.getClients(stylist_id))
-        //model.put("stylist", Stylist.al);
+        int stylist_id = Integer.parseInt(request.params(":id"));
+        Stylist.deleteStylistById(stylist_id);
+        model.put("stylists", Stylist.all());
         model.put("template", "templates/index.vtl");
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
