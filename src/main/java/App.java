@@ -24,5 +24,15 @@ public class App {
         model.put("template", "templates/add-stylist.vtl");
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
+
+      get("/stylists", (request, response) -> {
+        HashMap<String, Object> model = new HashMap<String, Object>();
+        String stylist = request.queryParams("stylist_name");
+        Stylist newStylist = new Stylist(stylist);
+        newStylist.save();
+        model.put("stylists", Stylist.all());
+        model.put("template", "templates/index.vtl");
+        return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
   }
 }
