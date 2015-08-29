@@ -27,13 +27,6 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Hair Salon");
   }
 
-  // @Test
-  // public void addNewStylistButtonDirectsToAddNewForm() {
-  //   goTo("http://localhost:4567/");
-  //   click("button", withText("Add New Stylist"));
-  //   assertThat(pageSource()).contains("Add a New Stylist");
-  // }
-
   @Test
   public void newStylistAddedToMainPage() {
     Stylist newStylist = new Stylist("Summer");
@@ -42,4 +35,19 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Summer");
   }
 
+  @Test
+  public void newStylistFormDisplaysAddedStylistOnMainPage() {
+    goTo("http://localhost:4567/add-stylist");
+    fill("#stylist_name").with("Hobbes");
+    submit(".btn");
+    assertThat(pageSource()).contains("Hobbes");
+  }
+
+  // @Test
+  // public void deleteIconDeletesStyistFromMainPage() {
+  //   Stylist stylist = new Stylist("Hobbes");
+  //   stylist.save();
+  //   click("a", withValue(stylist.getStylistId()));
+  //   assertFalse(pageSource()).contains("Hobbes");
+  // }
 }
