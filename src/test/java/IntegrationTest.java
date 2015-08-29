@@ -43,6 +43,7 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Hobbes");
   }
 
+  //DOES NOT WORK
   // @Test
   // public void deleteIconDeletesStyistFromMainPage() {
   //   Stylist stylist = new Stylist("Hobbes");
@@ -50,4 +51,15 @@ public class IntegrationTest extends FluentTest {
   //   click("a", withValue(stylist.getStylistId()));
   //   assertFalse(pageSource()).contains("Hobbes");
   // }
+
+  @Test
+  public void clientIsDisplayedOnStylistPage() {
+    Stylist stylist = new Stylist("Hobbes");
+    stylist.save();
+    Client client = new Client("Calvin", stylist.getStylistId());
+    client.save();
+    String path = String.format("http://localhost:4567/stylist/%d", stylist.getStylistId());
+    goTo(path);
+    assertThat(pageSource()).contains("Calvin");
+  }
 }
