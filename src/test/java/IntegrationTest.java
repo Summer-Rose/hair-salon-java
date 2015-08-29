@@ -43,13 +43,14 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Hobbes");
   }
 
-  //DOES NOT WORK
+  //DOES NOT WORK 
   // @Test
   // public void deleteIconDeletesStyistFromMainPage() {
   //   Stylist stylist = new Stylist("Hobbes");
   //   stylist.save();
-  //   click("a", withValue(stylist.getStylistId()));
-  //   assertFalse(pageSource()).contains("Hobbes");
+  //   goTo("http://localhost:4567/stylists");
+  //   click("a", value(String.valueOf(stylist.getStylistId())));
+  //   assertThat(!(pageSource()).contains("Hobbes"));
   // }
 
   @Test
@@ -62,4 +63,16 @@ public class IntegrationTest extends FluentTest {
     goTo(path);
     assertThat(pageSource()).contains("Calvin");
   }
+  
+  //DOES NOT WORK
+  // @Test
+  // public void clientIsDeletedFromStylistPage() {
+  //   Stylist stylist = new Stylist("Hobbes");
+  //   stylist.save();
+  //   Client client = new Client("Calvin", stylist.getStylistId());
+  //   client.save();
+  //   String path = String.format("http://localhost:4567/stylist/%d", stylist.getStylistId());
+  //   click(".btn", value(String.format("%d", client.getId())));
+  //   assertFalse(pageSource()).contains("Hobbes");
+  // }
 }
