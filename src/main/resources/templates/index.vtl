@@ -1,1 +1,23 @@
-<h2 class="well">Hair Salon</h2>
+<h2 class="well">Summer's Hair Salon</h2>
+
+<h5>Check out our stylists. Click on their names to see a list of each stylist's clients.</h5>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Stylist's Name</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    #foreach ($stylist in $stylists)
+      <tr>
+        <td><a href="/">$stylist.getStylistName()</a></td>
+        <td><a href="/delete/$restaurant.getId()"><span class="glyphicon
+          glyphicon-trash" aria-hidden="true"></a></span></td>
+      </tr>
+    #end
+  </tbody>
+</table>
+
+<a href="/" class="btn btn-success">Add New Stylist</a>
