@@ -27,4 +27,19 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Hair Salon");
   }
 
+  // @Test
+  // public void addNewStylistButtonDirectsToAddNewForm() {
+  //   goTo("http://localhost:4567/");
+  //   click("button", withText("Add New Stylist"));
+  //   assertThat(pageSource()).contains("Add a New Stylist");
+  // }
+
+  @Test
+  public void newStylistAddedToMainPage() {
+    Stylist newStylist = new Stylist("Summer");
+    newStylist.save();
+    goTo("http://localhost:4567/stylists");
+    assertThat(pageSource()).contains("Summer");
+  }
+
 }
