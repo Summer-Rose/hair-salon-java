@@ -61,10 +61,19 @@ public class App {
         if (client_name != null) {
           newClient.save();
         }
-        
         model.put("stylist", Stylist.find(Integer.parseInt(request.params(":id"))));
         model.put("clients", Client.getClientsByStylistId(stylist_id));
-        
+        model.put("template", "templates/stylist.vtl");
+        return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
+
+      get("/delete-client/:id/stylist/:stylist_id", (request, response) -> {
+        HashMap<String, Object> model = new HashMap<String, Object>();
+        int client_id = Integer.parseInt(request.params(":id"));
+        Client.deleteClientById(client_id);
+        Integer stylist_id = Integer.parseInt(request.params(":stylist_id"));
+        model.put("stylist", Stylist.find(stylist_id));
+        model.put("clients", Client.getClientsByStylistId(stylist_id));
         model.put("template", "templates/stylist.vtl");
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
