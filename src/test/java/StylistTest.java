@@ -52,4 +52,13 @@ public class StylistTest {
     assertTrue(stylist.getClients().containsAll(Arrays.asList(clients)));
   }
 
+  @Test
+  public void deleteStylistAndAssocitedClients_true() {
+    Stylist stylist = new Stylist("Hobbes");
+    stylist.save();
+    Client client = new Client("Calvin", stylist.getStylistId());
+    client.save();
+    Stylist.deleteStylistById(stylist.getStylistId());
+    assertTrue(Stylist.all().size() == 0 && Client.all().size() == 0);
+  }
 }
