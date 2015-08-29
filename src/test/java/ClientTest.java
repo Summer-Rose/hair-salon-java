@@ -25,6 +25,16 @@ public class ClientTest {
   }
 
   @Test
+  public void deleteClientsById_true() {
+    Stylist stylist = new Stylist("Edward Scissor Hands");
+    stylist.save();
+    Client client = new Client("Peter Griffin", stylist.getStylistId());
+    client.save();
+    Client.deleteClientById(client.getId());
+    assertTrue(Client.all().size() == 0);
+  }
+
+  @Test
   public void save_newClientIsSavedIntoDatabaseWithId() {
     Client newClient = new Client("Homer Simpson", 1);
     newClient.save();
