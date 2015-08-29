@@ -1,0 +1,26 @@
+<h2 class="well">$stylist.getStylistName()'s Clients</h2>
+
+<form action="/add-client">
+	<div class="form-group">
+		<label for="client_name">Client Name:</label>
+		<input type="text" id="client_name" name="client_name">
+		<button type="submit" class="btn btn-success">Add New Client</button>
+	</div>
+</form>
+
+#if ($clients)
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Client Name</th>
+			<th>Client ID</th>
+			<th>Remove</th>
+		</tr>
+	</thead>
+	<tbody>
+
+	</tbody>
+</table>
+#end
+
+<a href="/" class="btn btn-success">Back</a>
