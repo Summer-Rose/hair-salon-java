@@ -25,7 +25,7 @@ public class App {
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
 
-      get("/stylists", (request, response) -> {
+      post("/stylists", (request, response) -> {
         HashMap<String, Object> model = new HashMap<String, Object>();
         String stylist = request.queryParams("stylist_name");
         Stylist newStylist = new Stylist(stylist);
@@ -53,7 +53,7 @@ public class App {
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
 
-      get("/client/:id", (request, response) -> {
+      post("/client/:id", (request, response) -> {
         HashMap<String, Object> model = new HashMap<String, Object>();
         String client_name = request.queryParams("client_name");
         int stylist_id = Integer.parseInt(request.queryParams("stylistId"));
