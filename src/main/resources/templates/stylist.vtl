@@ -1,6 +1,6 @@
 <h2 class="well">$stylist.getStylistName()'s Clients</h2>
 
-<form action="/client/$stylist.getStylistId()">
+<form action="/client/$stylist.getStylistId()" method="post">
 	<div class="form-group">
 		<input type="hidden" id="stylistId" name="stylistId" value="$stylist.getStylistId()">
 		<label for="client_name">Client Name:</label>
